@@ -12,7 +12,7 @@ HYPHEN_INSENSITIVE="true"
 # COMPLETION_WAITING_DOTS="true"
 
 # My ZSH plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(z web-search ubuntu zsh-wakatime)
+plugins=(z web-search ubuntu)
 
 # User configuration
 
