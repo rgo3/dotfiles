@@ -12,7 +12,7 @@ HYPHEN_INSENSITIVE="true"
 # COMPLETION_WAITING_DOTS="true"
 
 # My ZSH plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(z web-search ubuntu)
+plugins=(z web-search ubuntu zsh-wakatime)
 
 # User configuration
 
@@ -60,7 +60,7 @@ alias checknet="sudo nmap -sP"
 
 
 #function mkcd: makes and changes to dir
-mkcd(){
+function mkcd(){
 	local dir=$1
 	mkdir ${dir} && cd ${dir};
 }

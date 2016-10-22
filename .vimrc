@@ -56,7 +56,7 @@ Plug 'vimwiki/vimwiki'
 " Opens a browser to preview markdown files
 " For this to work, you need to type npm install -g instant-markdown-d
 Plug 'suan/vim-instant-markdown'
-""
+"
 
 " [8]
 Plug 'SirVer/ultisnips' | Plug 'justinj/vim-react-snippets' | Plug 'colbycheeze/vim-snippets'
@@ -64,20 +64,14 @@ Plug 'SirVer/ultisnips' | Plug 'justinj/vim-react-snippets' | Plug 'colbycheeze/
 " [9] supertab makes YCM compatible with ultisnips
 "Plug 'ervandew/supertab'
 "Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
-" Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
+
+" [10] wakatime to record coding in vim
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
 set ttyfast
 set lazyredraw
-
-let g:ruby_path="~/.rvm/bin/ruby"
-
-" have jsx highlighting/indenting work in .js files as well
-let g:jsx_ext_required = 0
-
-"let java highlighting work
-let did_java_syn_inits = 1
 
 let $PATH='/usr/local/bin:' . $PATH
 
@@ -95,9 +89,6 @@ map <F9> :NERDTreeFind<CR>
 set ttimeout
 set ttimeoutlen=20
 set notimeout
-
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
 
 " highlight vertical column of cursor
 au WinLeave * set nocursorline nocursorcolumn
@@ -132,10 +123,6 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
-
 filetype plugin indent on
 
 augroup vimrcEx
@@ -143,14 +130,6 @@ augroup vimrcEx
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it for commit messages, when the position is invalid, or when
-  " inside an event handler (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
@@ -163,16 +142,6 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 augroup END
 
-" bind K to search word under cursor
-nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Softtabs, 2 spaces
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-" Display extra whitespace
-" set list listchars=tab:»·,trail:·
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -207,7 +176,7 @@ set t_Co=256
 
 " Color scheme
 syntax enable
-let g:solarized_termcolors=16
+let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
@@ -252,34 +221,15 @@ let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
-
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
-" configure syntastic syntax checking to check on open as well as save
-let g:syntastic_ruby_checkers = ['mri']
-let g:syntastic_enable_highlighting=0
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
 
-" Remove trailing whitespace on save for ruby files.
-function! s:RemoveTrailingWhitespaces()
-  "Save last cursor position
-  let l = line(".")
-  let c = col(".")
-
-  %s/\s\+$//ge
-
-  call cursor(l,c)
-endfunction
-
-au BufWritePre * :call <SID>RemoveTrailingWhitespaces()
 
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
