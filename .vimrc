@@ -1,6 +1,6 @@
 "
 " Type :so % to refresh .vimrc after making changes
-" Type :PluginInstall to update
+" Type :PlugInstall to update
 "
 
 if &compatible
@@ -29,19 +29,15 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 " [4] highlighting for Javascript
 Plug 'scrooloose/syntastic' "Syntax Highlighting
-Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
-Plug 'jimmyhchan/dustjs.vim' "Highlighting for dust
-
-" [5] Adds a ; at the end of a line by pressing <leader> ;
 Plug 'lfilho/cosco.vim'
 
 Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
 Plug 'vim-scripts/HTML-AutoCloseTag' "close tags after >
-Plug 'vim-scripts/tComment' "Comment easily with gcc
 Plug 'tpope/vim-repeat' "allow plugins to utilize . command
 Plug 'tpope/vim-surround' "easily surround things...just read docs for info
 Plug 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
 Plug 'duff/vim-scratch' "Open a throwaway scratch buffer
+Plug 'scrooloose/nerdcommenter' "Easy and nice commenting
 ""
 
 """ Utilities / Extras / Etc
@@ -64,6 +60,7 @@ Plug 'SirVer/ultisnips' | Plug 'justinj/vim-react-snippets' | Plug 'colbycheeze/
 " [9] supertab makes YCM compatible with ultisnips
 "Plug 'ervandew/supertab'
 "Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+Plug 'davidhalter/jedi-vim' " Awesome python autocompletion
 
 " [10] wakatime to record coding in vim
 Plug 'wakatime/vim-wakatime'
@@ -214,9 +211,6 @@ function! InsertTabWrapper()
     endif
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
