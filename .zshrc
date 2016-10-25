@@ -40,9 +40,19 @@ function fd() {
 
 # cd into dir with fzf | +hidden files
 function fda() {
-	  local dir
-	  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+	local dir
+	dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
 
+# fzf: open selected file with 'open'-command
+function fo() {
+	local out file key
+	IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
+	key=$(head -1 <<< "$out")
+	file=$(head -2 <<< "$out" | tail -1)
+	if [ -n "$file"  ]; then
+	[ "$key" = ctrl-o  ] && open "$file" || ${EDITOR:-vim} "$file"
+	fi
+}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
