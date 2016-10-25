@@ -22,49 +22,27 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 source $ZSH/oh-my-zsh.sh
 
 # my aliases
-# opening files
-alias open="gnome-open"
+source ~/.dotfiles/.aliases
 
-# go up directories
-alias ...="../../"
-alias ....="../../../"
-
-# Stuff
-alias v="vim"
-alias zshrc="vim ~/.dotfiles/.zshrc"
-alias vimrc="vim ~/.dotfiles/.vimrc"
-alias spo="sudo poweroff"
-alias music="spotify &"
-
-#IDE's
-alias idea="idea &"
-alias lion="clion &"
-
-#git
-alias gst="git status"
-alias gitinit="git init && touch README && touch .gitignore"
-alias gaa="git add ."
-alias gcm="git commit -m"
-alias gpom="git push -u origin master"
-
-
-# svn
-alias svu="svn up"
-
-# Network Stuff
-alias desk="ssh 10.0.0.21"
-alias ras="ssh pi@10.0.0.23"
-alias rras="rdesktop -g 1000x800 10.0.0.23&"
-alias checkmynet="sudo nmap -sP 10.0.0.0/24"
-alias checknet="sudo nmap -sP"
-
-
-#function mkcd: makes and changes to dir
+# creates and changes to dir
 function mkcd(){
 	local dir=$1
 	mkdir ${dir} && cd ${dir};
 }
 
+# cd into directory with fzf
+function fd() {
+	local dir
+	dir=$(find ${1:-.} -path '*/\.*' -prune \
+		        -o -type d -print 2> /dev/null | fzf +m) &&
+	cd "$dir"
+}
+
+# cd into dir with fzf | +hidden files
+function fda() {
+	  local dir
+	  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

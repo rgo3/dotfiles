@@ -1,0 +1,39 @@
+# Aliases
+
+# opening files
+alias open="gnome-open"
+
+# go up directories
+alias ...="../../"
+alias ....="../../../"
+alias c="z"
+
+# Stuff
+alias v="vim"
+alias zshrc="vim ~/.dotfiles/.zshrc"
+alias vimrc="vim ~/.dotfiles/.vimrc"
+alias spo="sudo poweroff"
+alias music="spotify &"
+
+#IDE's
+alias idea="idea &"
+alias lion="clion &"
+
+#git
+alias gst="git status"
+alias gitinit="git init && touch README && touch .gitignore"
+alias gaa="git add ."
+alias gcm="git commit -m"
+alias gpom="git push -u origin master"
+
+
+# svn
+alias svu="svn up"
+
+# Network Stuff
+alias desk="ssh 10.0.0.21"
+alias ras="ssh pi@10.0.0.23"
+alias rras="rdesktop -g 1000x800 10.0.0.23&"
+alias checkmynet="sudo nmap -sP 10.0.0.0/24"
+alias checknet="sudo nmap -sP"
+
