@@ -66,3 +66,5 @@ function mkcd(){
 }
 
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

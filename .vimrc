@@ -24,13 +24,14 @@ Plug 'tpope/vim-fugitive' | Plug 'vim-airline/vim-airline'
 " [2] File tree viewer
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-" [3] search filesystem with ctrl+p
-Plug 'ctrlpvim/ctrlp.vim'
+" [3] search filesystem with FZF Fuzzy Finder
+Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}
 
-" [4] highlighting for Javascript
+" [4] highlighting
 Plug 'scrooloose/syntastic' "Syntax Highlighting
 Plug 'lfilho/cosco.vim'
 
+" [5] Features
 Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
 Plug 'vim-scripts/HTML-AutoCloseTag' "close tags after >
 Plug 'tpope/vim-repeat' "allow plugins to utilize . command
@@ -38,7 +39,6 @@ Plug 'tpope/vim-surround' "easily surround things...just read docs for info
 Plug 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
 Plug 'duff/vim-scratch' "Open a throwaway scratch buffer
 Plug 'scrooloose/nerdcommenter' "Easy and nice commenting
-""
 
 """ Utilities / Extras / Etc
 """
@@ -230,3 +230,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Copy & Paste
+if has('clipboard') && !has('gui_running')
+	vnoremap <C-c> "+y
+	vnoremap <C-x> "+d
+	vnoremap <C-v> "+p
+	inoremap <C-v> <C-r><C-o>+
+endif
