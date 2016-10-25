@@ -173,7 +173,7 @@ set t_Co=256
 
 " Color scheme
 syntax enable
-let g:solarized_termcolors=256
+let g:solarized_termcolors=16
 set background=dark
 colorscheme solarized
 
