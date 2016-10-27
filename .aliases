@@ -22,7 +22,7 @@ alias lion="clion &"
 
 #git
 alias gst="git status"
-alias gitinit="git init && touch README && touch .gitignore"
+alias gi="git init && touch README && touch .gitignore"
 alias gaa="git add ."
 alias gcm="git commit -m"
 alias gpom="git push -u origin master"
