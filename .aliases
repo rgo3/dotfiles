@@ -12,6 +12,7 @@ alias c="z"
 alias v="vim"
 alias zshrc="vim ~/.dotfiles/.zshrc"
 alias vimrc="vim ~/.dotfiles/.vimrc"
+alias aliases=" vim ~/.dotfiles/.aliases"
 alias spo="sudo poweroff"
 alias music="spotify &"
 
