@@ -12,7 +12,7 @@ alias c="z"
 alias v="vim"
 alias zshrc="vim ~/.dotfiles/.zshrc"
 alias vimrc="vim ~/.dotfiles/.vimrc"
-alias spo="sudo poweroff"
+alias shn="shutdown -h now"
 alias music="spotify &"
 
 #IDE's
@@ -21,7 +21,7 @@ alias lion="clion &"
 
 #git
 alias gst="git status"
-alias gitinit="git init && touch README && touch .gitignore"
+alias gitinit="git init && touch README.md && touch .gitignore"
 alias gaa="git add ."
 alias gcm="git commit -m"
 alias gpom="git push -u origin master"
@@ -33,7 +33,6 @@ alias svu="svn up"
 # Network Stuff
 alias desk="ssh 10.0.0.21"
 alias ras="ssh pi@10.0.0.23"
-alias rras="rdesktop -g 1000x800 10.0.0.23&"
-alias checkmynet="sudo nmap -sP 10.0.0.0/24"
+
 alias checknet="sudo nmap -sP"
 
