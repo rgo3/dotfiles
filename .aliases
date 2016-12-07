@@ -2,6 +2,7 @@
 
 # opening files
 alias open="gnome-open"
+alias view="google-chrome"
 
 # go up directories
 alias ...="../../"
