@@ -40,5 +40,5 @@ alias checknet="sudo nmap -sP"
 
 # redlight
 alias gonight="redshift -O 3700"
-alias goday="redshift -O 6500"
+alias goday="redshift -O 5500"
 
