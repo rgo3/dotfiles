@@ -39,6 +39,6 @@ alias ras="ssh pi@10.0.0.23"
 alias checknet="sudo nmap -sP"
 
 # redlight
-gonight="redshift -0 3700"
-goday="redshift -0 6500"
+alias gonight="redshift -0 3700"
+alias goday="redshift -0 6500"
 
