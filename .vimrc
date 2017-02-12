@@ -97,7 +97,8 @@ map <F2> :set paste<CR>i
 " Leave paste mode on exit
 au InsertLeave * set nopaste
 
-set backspace=2   " Backspace deletes like most programs in insert mode
+set backspace=2	  " Backspace deletes like most programs in insert mode
+set tabstop=4
 set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
 set nowritebackup
@@ -173,6 +174,20 @@ colorscheme solarized
 
 " Highlight line number of where cursor currently is
 hi CursorLineNr guifg=#050505
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ['python']
+let g:syntastic_haskell_checkers = ['ghc-mod']
+
 
 " Numbers
 set number
