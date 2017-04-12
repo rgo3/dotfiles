@@ -2,7 +2,7 @@
 export ZSH=/home/rgo/.oh-my-zsh
 
 # Themes in ~/.oh-my-zsh/themes
-ZSH_THEME="blinks"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -12,7 +12,7 @@ HYPHEN_INSENSITIVE="true"
 # COMPLETION_WAITING_DOTS="true"
 
 # My ZSH plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(z web-search ubuntu)
+plugins=(z web-search ubuntu zsh-syntax-highlighting)
 
 # User configuration
 
