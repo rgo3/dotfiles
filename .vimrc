@@ -16,7 +16,9 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 " Awesome looking meta at bottom
 " Fugitive will help with git related stuff, and show branch on status
-Plug 'tpope/vim-fugitive' | Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-fugitive' 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 ""
 
 """ Some ESSENTIAL IDE like plugins for Vim
@@ -161,6 +163,7 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_symbols.space = "\ua0"
 let g:airline_theme='solarized'
+
 set t_Co=256
 
 :set smartcase

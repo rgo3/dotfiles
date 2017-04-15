@@ -36,17 +36,17 @@ function mkcd(){
 function fd() {
 	local dir
 	dir=$(find ${1:-.} -path '*/\.*' -prune \
-		        -o -type d -print 2> /dev/null | fzf +m) &&
+		        -o -type d -print 2> /dev/null | fzf-tmux +m) &&
 	cd "$dir"
 }
 
 # cd into dir with fzf | +hidden files
 function fda() {
 	local dir
-	dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+	dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux +m) && cd "$dir"
 }
 
-# fzf: open selected file with 'open'-command
+# open selected file with 'open'-command
 function fo() {
 	local out file key
 	IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
@@ -58,5 +58,6 @@ function fo() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 

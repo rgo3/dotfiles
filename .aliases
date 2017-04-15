@@ -9,13 +9,14 @@ alias ...="../../"
 alias ....="../../../"
 alias c="z"
 
-# Stuff
+# dotfiles
 alias v="vim"
 alias zshrc="vim ~/.dotfiles/.zshrc"
 alias vimrc="vim ~/.dotfiles/.vimrc"
-alias shn="shutdown -h now"
 alias aliases=" vim ~/.dotfiles/.aliases"
-alias music="spotify &"
+
+# tmux
+alias tmux="tmux -2 -f .tmux.conf"
 
 #IDE's
 alias idea="idea &"
@@ -28,17 +29,19 @@ alias gaa="git add ."
 alias gcm="git commit -m"
 alias gpom="git push -u origin master"
 
+# shutdown
+alias shn="shutdown -h now"
 
 # svn
 alias svu="svn up"
 
 # Network Stuff
-alias desk="ssh 10.0.0.21"
-alias ras="ssh pi@10.0.0.23"
+alias desk="ssh 10.0.0.20"
+alias ras="ssh pi@10.0.0.24"
 
 alias checknet="sudo nmap -sP"
 
-# redlight
+# redshift
 alias gonight="redshift -O 3700"
 alias goday="redshift -O 5500"
 
