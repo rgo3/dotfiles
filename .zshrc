@@ -59,5 +59,9 @@ function fo() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+tmux attach &> /dev/null
 
+if [[ ! $TERM =~ screen ]]; then
+    exec tmux
+fi
 
