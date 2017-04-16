@@ -19,7 +19,7 @@ plugins=(z web-search ubuntu zsh-syntax-highlighting)
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export PATH="/home/rgo/anaconda3/bin:$PATH"
 export PATH="$HOME/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 source $ZSH/oh-my-zsh.sh
 
