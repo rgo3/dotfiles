@@ -10,14 +10,15 @@ alias ....="../../../"
 alias c="z"
 
 # dotfiles
-alias v="vim"
-alias zshrc="vim ~/.dotfiles/.zshrc"
-alias vimrc="vim ~/.dotfiles/.vimrc"
-alias aliases=" vim ~/.dotfiles/.aliases"
+alias v="nvim"
+alias zshrc="nvim ~/.dotfiles/.zshrc"
+alias vimrc="nvim ~/.dotfiles/.vimrc"
+alias aliases="nvim ~/.dotfiles/.aliases"
 alias tmcf="vim ~/.dotfiles/.tmux.conf"
 
 # tmux
 alias tmux="tmux -2 -f .tmux.conf"
+alias tnw="tmux new-window"
 
 #IDE's
 alias idea="idea &"
@@ -43,6 +44,6 @@ alias ras="ssh pi@10.0.0.24"
 alias checknet="sudo nmap -sP"
 
 # redshift
-alias gonight="redshift -O 3700"
-alias goday="redshift -O 5500"
+alias night="redshift -O 3700"
+alias day="redshift -O 5500"
 

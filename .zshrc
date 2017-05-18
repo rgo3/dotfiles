@@ -20,6 +20,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 export PATH="/home/rgo/anaconda3/bin:$PATH"
 export PATH="$HOME/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH"
 export FZF_DEFAULT_COMMAND='ag -g ""'
+#export TERM=screen-256color
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -53,9 +55,37 @@ function fo() {
 	key=$(head -1 <<< "$out")
 	file=$(head -2 <<< "$out" | tail -1)
 	if [ -n "$file"  ]; then
-	[ "$key" = ctrl-o  ] && open "$file" || ${EDITOR:-vim} "$file"
+	[ "$key" = ctrl-o  ] && open "$file" || ${EDITOR:-nvim} "$file"
 	fi
 }
+
+_gen_fzf_default_opts() {
+  local base03="234"
+  local base02="235"
+  local base01="240"
+  local base00="241"
+  local base0="244"
+  local base1="245"
+  local base2="254"
+  local base3="230"
+  local yellow="136"
+  local orange="166"
+  local red="160"
+  local magenta="125"
+  local violet="61"
+  local blue="33"
+  local cyan="37"
+  local green="64"
+
+  # Comment and uncomment below for the light theme.
+
+  # Solarized Dark color scheme for fzf
+  export FZF_DEFAULT_OPTS="
+    --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
+    --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
+  "
+  }
+_gen_fzf_default_opts
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -31,7 +31,8 @@ Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}
 
 " [4] highlighting
 Plug 'scrooloose/syntastic' "Syntax Highlighting
-Plug 'lfilho/cosco.vim'
+Plug 'nvie/vim-flake8'
+
 
 " [5] Features
 Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
@@ -59,10 +60,8 @@ Plug 'suan/vim-instant-markdown'
 " [8]
 Plug 'SirVer/ultisnips' | Plug 'justinj/vim-react-snippets' | Plug 'colbycheeze/vim-snippets'
 
-" [9] supertab makes YCM compatible with ultisnips
-"Plug 'ervandew/supertab'
-"Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
-Plug 'davidhalter/jedi-vim' " Awesome python autocompletion
+" [9] YCM: Awesome autocompletion
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 
 " [10] wakatime to record coding in vim
 Plug 'wakatime/vim-wakatime'
@@ -101,6 +100,7 @@ au InsertLeave * set nopaste
 
 set backspace=2	  " Backspace deletes like most programs in insert mode
 set tabstop=4
+set encoding=utf-8
 set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
 set nowritebackup
@@ -187,9 +187,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let python_highlight_all=1
 
 let g:syntastic_python_checkers = ['python']
-let g:syntastic_haskell_checkers = ['ghc-mod']
+
+" YCM settings
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_python_binary_path = 'usr/bin/python3'
 
 
 " Numbers
