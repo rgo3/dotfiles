@@ -32,6 +32,7 @@ Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}
 " [4] highlighting
 Plug 'scrooloose/syntastic' "Syntax Highlighting
 Plug 'nvie/vim-flake8'
+Plug 'chrisbra/Colorizer' "Hex codes highlighter
 
 
 " [5] Features
