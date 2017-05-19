@@ -14,15 +14,13 @@ alias v="nvim"
 alias zshrc="nvim ~/.dotfiles/.zshrc"
 alias vimrc="nvim ~/.dotfiles/.vimrc"
 alias aliases="nvim ~/.dotfiles/.aliases"
-alias tmcf="vim ~/.dotfiles/.tmux.conf"
+alias tmcf="nvim ~/.dotfiles/.tmux.conf"
+alias i3c="nvim ~/.dotfiles/config/i3/config"
+alias i3b="nvim ~/.dotfiles/config/i3/i3blocks.conf"
 
 # tmux
 alias tmux="tmux -2 -f .tmux.conf"
 alias tnw="tmux new-window"
-
-#IDE's
-alias idea="idea &"
-alias lion="clion &"
 
 #git
 alias gst="git status"
@@ -37,11 +35,8 @@ alias shn="shutdown -h now"
 # svn
 alias svu="svn up"
 
-# Network Stuff
-alias desk="ssh 10.0.0.20"
-alias ras="ssh pi@10.0.0.24"
-
-alias checknet="sudo nmap -sP"
+# Network scan wit nmap
+alias net="sudo nmap -sP"
 
 # redshift
 alias night="redshift -O 3700"
