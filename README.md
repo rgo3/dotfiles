@@ -1,7 +1,3 @@
-# dotfiles..
+# **dotfiles..**
 
-**Files** | **Description**
---- | ---
-*vimrc* | *Vim* is awesome
-*zshrc* | Zsh run commands and fzf functions
-*alases* | All my aliases
+Just my dotfiles and configuration files for i3, tmux, vim, zsh and atom
