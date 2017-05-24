@@ -2,7 +2,7 @@
 export ZSH=/home/rgo/.oh-my-zsh
 
 # Themes in ~/.oh-my-zsh/themes
-ZSH_THEME="agnoster"
+ZSH_THEME="rog-power"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -27,9 +27,11 @@ source $ZSH/oh-my-zsh.sh
 
 # my aliases
 source ~/.dotfiles/.aliases
+
+# fzf commands and design
 source ~/.dotfiles/.fzfrc
 
-tmux attach &> /dev/null
+#tmux attach &> /dev/null
 
 if [[ ! $TERM =~ screen ]]; then
     exec tmux
