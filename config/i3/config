@@ -156,8 +156,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+Shift+x exec i3lock --color=#073642
-
+bindsym $mod+Shift+x exec ~/.dotfiles/config/i3/scripts/lock.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -227,10 +226,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 #bindsym XF86TouchpadToggle exec ~/.i3/toggletouchpad.sh # toggle touchpad
 
 # Take a screenshot upon pressing $mod+x (select an area)
-bindsym --release $mod+x exec --no-startup-id import ~/Pictures/latest-screenshot.png
+bindsym --release $mod+y exec --no-startup-id "import png:- | xclip -selection clipboard -t image/png -i"
 
 # Set wallpaper (need to install feh)
-exec_always feh --bg-scale ~/Dropbox/Pictures/Wallpaper/yosemite.png
+exec_always feh --bg-scale ~/Dropbox/Pictures/Wallpaper/beautiful_scotland.jpg
 
 # Fix Nautilius issue on Ubuntu
 exec_always gsettings set org.gnome.desktop.background show-desktop-icons false
