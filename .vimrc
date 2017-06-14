@@ -44,27 +44,23 @@ Plug 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
 Plug 'duff/vim-scratch' "Open a throwaway scratch buffer
 Plug 'scrooloose/nerdcommenter' "Easy and nice commenting
 
-""" Utilities / Extras / Etc
-"""
-" [6] Make gists of current buffer
-" View (https://github.com/mattn/gist-vim) for setup instructions
-Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
-
-" [7] Diary, notes, whatever. It's amazing
+" [6] Diary, notes, whatever. It's amazing
 Plug 'vimwiki/vimwiki'
 
 " Opens a browser to preview markdown files
 " For this to work, you need to type npm install -g instant-markdown-d
 Plug 'suan/vim-instant-markdown'
-"
 
-" [8]
-Plug 'SirVer/ultisnips' | Plug 'justinj/vim-react-snippets' | Plug 'colbycheeze/vim-snippets'
+" [7] YCM: Awesome autocompletion
+"Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 
-" [9] YCM: Awesome autocompletion
-Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+" Deoplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
-" [10] wakatime to record coding in vim
+
+" [8] wakatime to record coding in vim
 Plug 'wakatime/vim-wakatime'
 
 call plug#end()
@@ -193,8 +189,13 @@ let python_highlight_all=1
 let g:syntastic_python_checkers = ['python']
 
 " YCM settings
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_python_binary_path = 'usr/bin/python3'
+"let g:ycm_autoclose_preview_window_after_completion=1
+"let g:ycm_python_binary_path = 'usr/bin/python3'
+
+" deoplete settings
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = '~/go/bin/gocode'
+
 
 
 " Numbers

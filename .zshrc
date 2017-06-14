@@ -37,3 +37,5 @@ if [[ ! $TERM =~ screen ]]; then
     exec tmux
 fi
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
