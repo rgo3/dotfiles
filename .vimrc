@@ -14,15 +14,12 @@ call plug#begin('~/.vim/plugged')
 " [1]
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
-" Awesome looking meta at bottom
+
 " Fugitive will help with git related stuff, and show branch on status
 Plug 'tpope/vim-fugitive' 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-""
 
-""" Some ESSENTIAL IDE like plugins for Vim
-"""
 " [2] File tree viewer
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -33,7 +30,6 @@ Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}
 Plug 'scrooloose/syntastic' "Syntax Highlighting
 Plug 'nvie/vim-flake8'
 Plug 'chrisbra/Colorizer' "Hex codes highlighter
-
 
 " [5] Features
 Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
@@ -47,11 +43,11 @@ Plug 'scrooloose/nerdcommenter' "Easy and nice commenting
 " [6] Diary, notes, whatever. It's amazing
 Plug 'vimwiki/vimwiki'
 
-" Opens a browser to preview markdown files
+" [7] Opens a browser to preview markdown files
 " For this to work, you need to type npm install -g instant-markdown-d
 Plug 'suan/vim-instant-markdown'
 
-" [7] YCM: Awesome autocompletion
+" [8] YCM: Awesome autocompletion
 "Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 
 " Deoplete
@@ -59,8 +55,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
-
-" [8] wakatime to record coding in vim
+" [9] wakatime to record coding in vim
 Plug 'wakatime/vim-wakatime'
 
 call plug#end()
@@ -90,11 +85,6 @@ au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline
 set cursorline
 
-"key to insert mode with paste using F2 key
-map <F2> :set paste<CR>i
-" Leave paste mode on exit
-au InsertLeave * set nopaste
-
 set backspace=2	  " Backspace deletes like most programs in insert mode
 set tabstop=4
 set encoding=utf-8
@@ -111,9 +101,6 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set mouse=a
 
-" Fuzzy finder: ignore stuff that can't be opened, and generated files
-let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
-
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
@@ -125,12 +112,11 @@ filetype plugin indent on
 augroup vimrcEx
   autocmd!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " For all text files set 'textwidth' to 79 characters.
+  autocmd FileType text setlocal textwidth=79
 
   " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell
@@ -138,7 +124,6 @@ augroup vimrcEx
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 augroup END
-
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -184,27 +169,17 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let python_highlight_all=1
-
 let g:syntastic_python_checkers = ['python']
-
-" YCM settings
-"let g:ycm_autoclose_preview_window_after_completion=1
-"let g:ycm_python_binary_path = 'usr/bin/python3'
+let python_highlight_all=1
 
 " deoplete settings
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#go#gocode_binary = '~/go/bin/gocode'
 
-
-
 " Numbers
 set number
 set numberwidth=5
 set relativenumber
-
-" Snippets are activated by Shift+Tab
-let g:snippetsEmu_key = "<S-Tab>"
 
 " Persistent undo
 set undodir=~/.vim/undo/
@@ -236,12 +211,6 @@ nnoremap <leader><leader> <c-^>
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
-
 
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
