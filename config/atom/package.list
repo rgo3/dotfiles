@@ -94,14 +94,14 @@
 ├── MagicPython@1.0.10
 ├── atom-bracket-highlight@0.3.2
 ├── autocomplete-clang@0.11.3
-├── autocomplete-python@1.8.63
-├── busy-signal@1.4.1
+├── autocomplete-python@1.8.64
+├── busy-signal@1.4.3
 ├── intentions@1.1.2
 ├── linter@2.1.4
 ├── linter-markdown@4.0.1
 ├── linter-ui-default@1.2.4
 ├── minimap@4.28.2
 ├── pigments@0.39.1
-├── python-indent@1.0.2
+├── python-indent@1.0.3
 └── wakatime@7.0.3
 
