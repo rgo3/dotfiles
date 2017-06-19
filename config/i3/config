@@ -155,7 +155,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 bindsym $mod+Shift+x exec ~/.dotfiles/config/i3/scripts/lock.sh
 
@@ -230,7 +230,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym --release $mod+y exec --no-startup-id "import png:- | xclip -selection clipboard -t image/png -i"
 
 # Set wallpaper (need to install feh)
-exec_always feh --bg-scale ~/Dropbox/Pictures/Wallpaper/yosemite2.jpg
+exec_always feh --bg-scale ~/Dropbox/Pictures/Wallpaper/urban_night.jpg
 
 # Fix Nautilius issue on Ubuntu
 exec_always gsettings set org.gnome.desktop.background show-desktop-icons false
