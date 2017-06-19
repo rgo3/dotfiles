@@ -240,7 +240,6 @@ exec_always gsettings set org.nemo.desktop show-desktop-icons false
 exec gnome-terminal
 exec atom
 exec opera
-exec nautilus
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
