@@ -42,3 +42,5 @@ alias net="sudo nmap -sP"
 alias night="redshift -O 3700"
 alias day="redshift -O 5500"
 
+# web_search
+alias duck="web_search duckduckgo"
