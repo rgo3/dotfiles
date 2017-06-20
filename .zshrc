@@ -2,7 +2,7 @@
 export ZSH=/home/rgo/.oh-my-zsh
 
 # Themes in ~/.oh-my-zsh/themes
-ZSH_THEME="agnoster"
+ZSH_THEME="rgo-powerline"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
