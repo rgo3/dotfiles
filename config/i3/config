@@ -230,7 +230,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym --release $mod+y exec --no-startup-id "import png:- | xclip -selection clipboard -t image/png -i"
 
 # Set wallpaper (need to install feh)
-exec_always feh --bg-scale ~/Dropbox/Pictures/Wallpaper/urban_night.jpg
+exec_always feh --bg-scale ~/Dropbox/Pictures/Wallpaper/nyc_builidng_skyline.jpg
 
 # Fix Nautilius issue on Ubuntu
 exec_always gsettings set org.gnome.desktop.background show-desktop-icons false
