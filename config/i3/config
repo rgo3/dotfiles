@@ -187,7 +187,7 @@ bindsym $mod+r mode "resize"
 
 # Widow Colours
 #                         border  background text    indicator
-  client.focused          $base01 $base01    $base07 $base0F
+  client.focused          #073642 #073642    #b58900 #b58900
   client.focused_inactive $base02 $base02    $base03 $base0F
   client.unfocused        $base02 $base02    $base03 $base0F
   client.urgent           $base02 $base08    $base00 $base0F
@@ -202,13 +202,13 @@ bar {
 		position top
 		colors {
               separator  #657b83
-              background #073642
+              background #002b36
               statusline #657b83
 		#                        border  background text
-              focused_workspace  #073642 #073642    #b58900
-              active_workspace   #073642 #dc322f    #268bd2
-              inactive_workspace #073642 #073642    #268bd2
-              urgent_workspace   #073642 #073642    #657b83
+              focused_workspace  #002b36 #002b36    #b58900
+              active_workspace   #002b36 #dc322f    #268bd2
+              inactive_workspace #002b36 #002b36    #268bd2
+              urgent_workspace   #002b36 #002b36    #657b83
 
     }
 }
