@@ -71,9 +71,14 @@ let $PATH='/usr/local/bin:' . $PATH
 let g:session_autoload = 'no'
 
 " Toggle nerdtree with F10
-map <F10> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
 " Current file in nerdtree
-map <F9> :NERDTreeFind<CR>
+map <F3> :NERDTreeFind<CR>
+" Toggle :CheckHealth
+map <F4> :CheckHealth<CR>
+" Toggle :PlugUpdate
+map <F5> :PlugUpdate<CR>
+
 
 " Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
 set ttimeout
