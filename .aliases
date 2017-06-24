@@ -4,9 +4,11 @@
 alias open="gnome-open"
 alias view="opera"
 
-# go up directories
+# directory aliases
 alias ...="../../"
 alias ....="../../../"
+alias .....="../../../../"
+alias ......="../../../../../"
 alias c="z"
 
 # dotfiles
@@ -31,6 +33,13 @@ alias gpom="git push -u origin master"
 
 # shutdown
 alias shn="shutdown -h now"
+
+# apt
+alias ai="sudo apt install"
+alias afi="sudo apt --fix-broken install"
+alias au="sudo apt update"
+alias auu="sudo apt update & sudo apt upgrade"
+alias aar="sudo apt autoremove"
 
 # svn
 alias svu="svn up"
