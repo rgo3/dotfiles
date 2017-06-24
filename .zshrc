@@ -14,12 +14,9 @@ HYPHEN_INSENSITIVE="true"
 # My ZSH plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(z web-search zsh-syntax-highlighting)
 
-# User configuration
-
+# PATH configuration
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export FZF_DEFAULT_COMMAND='ag -g ""'
-#export TERM=screen-256color
-
 
 source $ZSH/oh-my-zsh.sh
 
