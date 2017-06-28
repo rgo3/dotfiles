@@ -4,15 +4,26 @@ export ZSH=/home/rgo/.oh-my-zsh
 # Themes in ~/.oh-my-zsh/themes
 ZSH_THEME="rgo-powerline"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
 
 # My ZSH plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(z web-search zsh-syntax-highlighting)
+
+## Antigen
+source ~/antigen.zsh
+
+antigen use oh-my-zsh
+
+# Plugins
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
+
+# Apply Antigen
+antigen apply 
+
+# Autocompletion
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
 # PATH configuration
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
@@ -26,11 +37,11 @@ source ~/.dotfiles/.aliases
 # fzf commands and design
 source ~/.dotfiles/.fzfrc
 
-#tmux attach &> /dev/null
-
+# tmux 
 if [[ ! $TERM =~ screen ]]; then
     exec tmux
 fi
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
