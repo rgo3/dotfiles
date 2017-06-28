@@ -110,8 +110,8 @@ bindsym $mod+a focus parent
 set $workspace1 "1: "
 set $workspace2 "2: "
 set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
+set $workspace4 "4: "
+set $workspace5 "5: "
 set $workspace6 "6: "
 
 
@@ -145,9 +145,9 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 assign [class="Terminal"] $workspace1
 assign [class="Atom"] $workspace2
 assign [class="Opera"] $workspace3
-assign [class="Nautilus"] $workspace4
-assign [class="Telegram"] $workspace5
-assign [class="Nylas"] $workspace5
+assign [class="Telegram"] $workspace4
+assign [class="Nylas"] $workspace4
+assign [class="Nautilus"] $workspace5
 for_window [class="Spotify"] move to workspace $workspace6
 
 # reload the configuration file
@@ -188,9 +188,9 @@ bindsym $mod+r mode "resize"
 # Widow Colours
 #                         border  background text    indicator
   client.focused          #073642 #073642    #b58900 #b58900
-  client.focused_inactive $base02 $base02    $base03 $base0F
-  client.unfocused        $base02 $base02    $base03 $base0F
-  client.urgent           $base02 $base08    $base00 $base0F
+  client.focused_inactive #002b36 #002b36    #b58900 #b58900
+  client.unfocused        #002b36 #002b36    #b58900 #b58900
+  client.urgent           #b58900 #b58900    #073642 #073642
 
 
 hide_edge_borders both
