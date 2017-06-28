@@ -27,7 +27,7 @@ alias tnw="tmux new-window"
 #git
 alias gst="git status"
 alias gi="git init && touch README.md && touch .gitignore"
-alias gaa="git add ."
+alias gaa="git add -A"
 alias gcm="git commit -m"
 alias gpom="git push -u origin master"
 
@@ -38,7 +38,7 @@ alias shn="shutdown -h now"
 alias ai="sudo apt install"
 alias afi="sudo apt --fix-broken install"
 alias au="sudo apt update"
-alias auu="sudo apt update & sudo apt upgrade"
+alias auu="sudo apt upgrade"
 alias aar="sudo apt autoremove"
 
 # svn
