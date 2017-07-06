@@ -53,3 +53,11 @@ alias day="redshift -O 5500"
 
 # web_search
 alias duck="web_search duckduckgo"
+
+# Functions
+
+# creates and changes to dir
+function mkcd(){
+	local dir=$1
+	mkdir ${dir} && cd ${dir};
+}
