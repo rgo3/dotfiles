@@ -2,7 +2,7 @@
 export ZSH=/home/rgo/.oh-my-zsh
 
 # Themes in ~/.oh-my-zsh/themes
-ZSH_THEME="rgo-powerline"
+ZSH_THEME="candy-rgo"
 
 # Sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
@@ -16,6 +16,7 @@ source ~/antigen.zsh
 antigen use oh-my-zsh
 
 # Plugins
+antigen theme candy 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 
@@ -28,6 +29,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 # PATH configuration
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export FZF_DEFAULT_COMMAND='ag -g ""'
+export PATH=/opt/apache-maven-3.5.0/bin:$PATH
+export JAVA_HOME=/usr/local/java/jdk1.8.0_144
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=/home/rgo/Applications/anaconda3/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
@@ -44,4 +49,4 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
+fortune | cowthink | lolcat -s 2500 -a

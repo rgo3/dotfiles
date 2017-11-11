@@ -2,7 +2,7 @@
 
 # opening files
 alias open="gnome-open"
-alias view="opera"
+alias view="google-chrome-stable"
 
 # directory aliases
 alias ...="../../"
