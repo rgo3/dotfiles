@@ -79,13 +79,13 @@ else:
     fulltext += form.format(color(percentleft), percentleft)
     #fulltext += timeleft
 
-if percentleft < 10:
-        check_output([
-            'notify-send', 
-            '--urgency=critical',
-            '--expire-time=5000',
-            'Warning: Battery Low',
-            'I need power you moron...'])
+if percentleft < 5:
+    check_output([
+        'notify-send', 
+        '--urgency=critical',
+        '--expire-time=5000',
+        'Warning: Battery Low',
+        'I need power you moron...'])
 
 print(fulltext)
 print(fulltext)
