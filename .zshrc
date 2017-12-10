@@ -28,11 +28,14 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
 # PATH configuration
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-export FZF_DEFAULT_COMMAND='ag -g ""'
+#export FZF_DEFAULT_COMMAND='ag -g ""'
 export PATH=/opt/apache-maven-3.5.0/bin:$PATH
 export JAVA_HOME=/usr/local/java/jdk1.8.0_144
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=/home/rgo/Applications/anaconda3/bin:$PATH
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/dev/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 

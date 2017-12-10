@@ -13,7 +13,6 @@ call plug#begin('~/.vim/plugged')
 """
 " [1]
 Plug 'altercation/vim-colors-solarized'
-Plug 'kien/rainbow_parentheses.vim'
 
 " Fugitive will help with git related stuff, and show branch on status
 Plug 'tpope/vim-fugitive' 
@@ -29,11 +28,9 @@ Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}
 " [4] highlighting
 Plug 'scrooloose/syntastic' "Syntax Highlighting
 Plug 'nvie/vim-flake8'
-Plug 'chrisbra/Colorizer' "Hex codes highlighter
 
 " [5] Features
 Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
-Plug 'vim-scripts/HTML-AutoCloseTag' "close tags after >
 Plug 'tpope/vim-repeat' "allow plugins to utilize . command
 Plug 'tpope/vim-surround' "easily surround things...just read docs for info
 Plug 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
@@ -47,16 +44,23 @@ Plug 'vimwiki/vimwiki'
 " For this to work, you need to type npm install -g instant-markdown-d
 Plug 'suan/vim-instant-markdown'
 
-" [8] YCM: Awesome autocompletion
-"Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
-
-" Deoplete
+" [8] Deoplete + Autocompletion and language extensions: Python, Go, Scala
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Python
 Plug 'zchee/deoplete-jedi'
+
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'nsf/gocode', {'rtp': 'nvim/'}
+Plug 'godoctor/godoctor.vim'
+
+" Scala
+Plug 'derekwyatt/vim-scala'
 
 " [9] wakatime to record coding in vim
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
@@ -70,7 +74,7 @@ let $PATH='/usr/local/bin:' . $PATH
 " Sessions
 let g:session_autoload = 'no'
 
-" Toggle nerdtree with F10
+" Toggle nerdtree with F2
 map <F2> :NERDTreeToggle<CR>
 " Current file in nerdtree
 map <F3> :NERDTreeFind<CR>
