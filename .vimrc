@@ -46,6 +46,8 @@ Plug 'suan/vim-instant-markdown'
 
 " [8] Deoplete + Autocompletion and language extensions: Python, Go, Scala
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 
 " Python
 Plug 'zchee/deoplete-jedi'
@@ -55,6 +57,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'nsf/gocode', {'rtp': 'nvim/'}
 Plug 'godoctor/godoctor.vim'
+Plug 'jnwhiteh/vim-golang'
 
 " Scala
 Plug 'derekwyatt/vim-scala'
@@ -96,6 +99,7 @@ set cursorline
 
 set backspace=2	  " Backspace deletes like most programs in insert mode
 set tabstop=4
+set shiftwidth=4
 set encoding=utf-8
 set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
@@ -184,7 +188,24 @@ let python_highlight_all=1
 
 " deoplete settings
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = '~/go/bin/gocode'
+let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
+
+""" Go settings
+" Highlighting
+let g:go_highlight_funtions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_structs = 1 
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+
+" Snippets
+let g:go_snippet_engine = "neosnippet"
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
 
 " Numbers
 set number
