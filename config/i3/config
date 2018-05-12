@@ -109,10 +109,10 @@ bindsym $mod+a focus parent
 
 # Awesome fonts
 set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -140,13 +140,19 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
+# move current workspace between monitors
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+bindsym $mod+Control+l move workspace to output right
 
+# assign certain programs to specifig windows
 assign [class="Terminal"] $workspace1
 assign [class="Code"] $workspace2
 assign [class="Google-chrome"] $workspace3
 assign [class="Telegram"] $workspace4
-assign [class="Nylas"] $workspace4
-assign [class="Nautilus"] $workspace5
+assign [class="Mailspring"] $workspace4
+assign [class="Spotify"] $workspace5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -204,7 +210,7 @@ bar {
               statusline #657b83
 		#                        border  background text
               focused_workspace  #002b36 #002b36    #b58900
-              active_workspace   #002b36 #dc322f    #268bd2
+              active_workspace   #002b36 #002b36    #268bd2
               inactive_workspace #002b36 #002b36    #268bd2
               urgent_workspace   #002b36 #002b36    #657b83
 
@@ -228,7 +234,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym --release $mod+y exec --no-startup-id "import png:- | xclip -selection clipboard -t image/png -i"
 
 # Set wallpaper (need to install feh)
-exec_always feh --bg-scale ~/Dropbox/Pictures/Wallpaper/el-capitan.jpg
+exec_always feh --bg-scale ~/Dropbox/Pictures/Wallpaper/sf-goldengate.jpg
 
 # Fix Nautilius issue on Ubuntu
 exec_always gsettings set org.gnome.desktop.background show-desktop-icons false
@@ -238,7 +244,7 @@ exec_always gsettings set org.nemo.desktop show-desktop-icons false
 exec gnome-terminal
 exec code
 exec google-chrome-stable
-exec ~/Applications/Telegram/Telegram
+exec mailspring
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
