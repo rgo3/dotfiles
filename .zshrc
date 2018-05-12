@@ -40,10 +40,10 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 source $ZSH/oh-my-zsh.sh
 
 # my aliases
-source ~/.dotfiles/.aliases
+source ~/.dotfiles/.aliases.sh
 
 # fzf commands and design
-source ~/.dotfiles/.fzfrc
+source ~/.dotfiles/.fzfrc.sh
 
 # tmux 
 if [[ ! $TERM =~ screen ]]; then
