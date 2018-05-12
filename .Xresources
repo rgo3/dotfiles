@@ -1,0 +1,11 @@
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! author: rgo3
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+!                  bg       border   separator
+rofi.color-window: #FF003642, #FF003642, #FF003642
+!                  bg         fg       bg-alt     hl-bg      hl-fg
+rofi.color-normal: #FF003642, #b58900, #FF003642, #FF003642, #268bd2
+rofi.color-active: #FF003642, #859900, #FF003642, #FF003642, #268bd2
+rofi.color-urgent: #FF003642, #dc322f, #FF003642, #FF003642, #268bd2
