@@ -1,1 +1,0 @@
-/home/rgo/dev/go/src/github.com/rgo3/i3-scripts/ipinfo/main.go
