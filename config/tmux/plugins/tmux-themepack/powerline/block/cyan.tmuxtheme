@@ -19,7 +19,7 @@ set -g status-bg default
 set -g status-left-bg default
 set -g status-left-fg colour243
 set -g status-left-length 40
-set -g status-left "#[fg=colour232,bg=colour39,bold] #(whoami) #[fg=colour39,bg=colour240,nobold]#[fg=colour233,bg=colour240,bold]  #(curl -4 icanhazip.com) #[fg=colour240,bg=colour235]#[fg=colour240,bg=colour235] #I:#P #[fg=colour235,bg=default,nobold]"
+set -g status-left "#[fg=colour232,bg=colour39,bold] #(whoami) #[fg=colour39,bg=colour240,nobold]#[fg=colour233,bg=colour240,bold]  #(ipinfo ip) #[fg=colour240,bg=colour235]#[fg=colour240,bg=colour235] #I:#P #[fg=colour235,bg=default,nobold]"
 
 # Right side of status bar
 set -g status-right-bg default
