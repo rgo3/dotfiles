@@ -1,5 +1,4 @@
 #!/bin/bash
-scrot /tmp/screenshot.png
-convert /tmp/screenshot.png -blur 8x8 /tmp/screenshotblur.png
-i3lock -i /tmp/screenshotblur.png
+scrot /tmp/screenshot.png && ~/dev/go/bin/bluri
+i3lock -i /tmp/screenshot.png
 
