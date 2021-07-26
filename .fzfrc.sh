@@ -1,48 +1,38 @@
-# cd into directory with fzf
-function fd() {
-	local dir
-	dir=$(find ${1:-.} -path '*/\.*' -prune \
-		        -o -type d -print 2> /dev/null | fzf-tmux +m) &&
-	cd "$dir"
-}
-
 # cd into dir with fzf | +hidden files
-function fda() {
+fd() {
 	local dir
 	dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux +m) && cd "$dir"
 }
 
-# open selected file with 'open'-command
-function fo() {
-	local out file key
-	IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
-	key=$(head -1 <<< "$out")
-	file=$(head -2 <<< "$out" | tail -1)
-	if [ -n "$file"  ]; then
-	[ "$key" = ctrl-o  ] && ${EDITOR:-nvim} "$file" ||  open "$file"
-	fi
-}
-
-# search history with fzf
 # execute the selected command
 fh() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf-tmux +s --tac | sed 's/ *[0-9]* *//')
 }
 
 # push command to editing buffer stack | ability to edit the command
-fhp() {
+fhe() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf-tmux +s --tac | sed 's/ *[0-9]* *//')
 }
 
 # fkill - kill process
-fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf-tmux -m | awk '{print $2}')
+fk() {
+  local pid 
+  if [ "$UID" != "0" ]; then
+    pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+  else
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+  fi  
 
   if [ "x$pid" != "x" ]
   then
     echo $pid | xargs kill -${1:-9}
   fi
+}
+
+unalias z 2> /dev/null
+z() {
+  [ $# -gt 0 ] && _z "$*" && return
+  cd "$(zshz -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
 
 # fs - browse tmux sessions
@@ -76,11 +66,13 @@ _gen_fzf_default_opts() {
 
   # Solarized Dark color scheme for fzf
   export FZF_DEFAULT_OPTS="
-    --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
-    --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
+    --color fg:-1,bg:-1,hl:$yellow,fg+:$base2,bg+:$base02,hl+:$yellow
+    --color info:$blue,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$blue
   "
 }
 
 _gen_fzf_default_opts
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
+
+

@@ -1,43 +1,52 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/home/rgo/.oh-my-zsh
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
 
-# Themes in ~/.oh-my-zsh/themes
-ZSH_THEME="candy-rgo"
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### Zinit installer end
 
-# Sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
+# zsh completion
+autoload -U compinit && compinit
+zstyle ':completion:*' menu select
 
-# My ZSH plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(z web-search zsh-syntax-highlighting)
+# load plugins
 
-## Antigen
-source ~/antigen.zsh
+# interactive git with fzf
+zinit light wfxr/forgit
 
-antigen use oh-my-zsh
+# syntax highlighting
+zinit light zdharma/fast-syntax-highlighting
 
-# Plugins
-antigen theme candy 
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions
+# jump to frequent dirs
+zinit light agkozak/zsh-z
 
-# Apply Antigen
-antigen apply 
+# prompt theme
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
 
-# Autocompletion
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+# prompt colors
+zstyle :prompt:pure:user:root color red
+zstyle :prompt:pure:user color yellow
+zstyle :prompt:pure:host color yellow
+zstyle :prompt:pure:git:branch color green
+zstyle :prompt:pure:git:dirty color default
+zstyle ':prompt:pure:prompt:*' color yellow
 
-# PATH configuration
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-#export FZF_DEFAULT_COMMAND='ag -g ""'
-export PATH=/opt/apache-maven-3.5.0/bin:$PATH
-export JAVA_HOME=/usr/local/java/jdk1.8.0_144
-export PATH=$JAVA_HOME/bin:$PATH
-#export PATH=/home/rgo/Applications/anaconda3/bin:$PATH
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/dev/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+# ls colors
+zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zinit light trapd00r/LS_COLORS
 
-source $ZSH/oh-my-zsh.sh
+# configure env vars
+source ~/.dotfiles/env
 
 # my aliases
 source ~/.dotfiles/.aliases.sh
@@ -45,11 +54,16 @@ source ~/.dotfiles/.aliases.sh
 # fzf commands and design
 source ~/.dotfiles/.fzfrc.sh
 
-# tmux 
-if [[ ! $TERM =~ screen ]]; then
-    exec tmux
+if [ -z "$TMUX" ]
+then
+    tmux attach || tmux new
 fi
 
+# source fzf stuff
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-fortune | lolcat -s 2500 -a
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/rgo/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/rgo/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/rgo/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/rgo/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

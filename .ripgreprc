@@ -1,0 +1,21 @@
+# No vomit please.
+--max-columns=150
+
+# Set colors.
+--colors=line:fg:yellow
+--colors=line:style:bold
+--colors=path:fg:blue
+--colors=path:style:bold
+--colors=match:fg:yellow
+--colors=match:style:bold
+
+# I want it all.
+--hidden
+--search-zip
+
+# Follow links.
+--follow
+
+# Nope.
+--glob
+!.git/*

@@ -1,258 +1,191 @@
-"
-" Type :so % to refresh .vimrc after making changes
-" Type :PlugInstall to update
-"
+set nocompatible
+let mapleader = "\<Space>"
 
-if &compatible
-  set nocompatible
-end
+augroup vimrc
+    autocmd!
+augroup END
 
+" https://github.com/junegunn/vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd vimrc VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" PLugins
 call plug#begin('~/.vim/plugged')
 
-""" Theme / Pretty stuff
-"""
-" [1]
-Plug 'altercation/vim-colors-solarized'
+" Statusline
+Plug 'itchyny/lightline.vim'
 
-" Fugitive will help with git related stuff, and show branch on status
+" FZF
+" https://github.com/junegunn/fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" https://github.com/junegunn/fzf.vim
+Plug 'junegunn/fzf.vim'
+
+" https://github.com/szw/vim-g
+Plug 'szw/vim-g'  
+
+" https://github.com/tpope/vim-fugitive
 Plug 'tpope/vim-fugitive' 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
-" [2] File tree viewer
+" https://github.com/junegunn/rainbow_parentheses.vim
+Plug 'junegunn/rainbow_parentheses.vim'
+
+" https://github.com/scrooloose/nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-" [3] search filesystem with FZF Fuzzy Finder
-Plug 'junegunn/fzf', {'dir': '~/fzf', 'do': './install --all'}
+" https://github.com/airblade/vim-gitgutter
+Plug 'airblade/vim-gitgutter'
 
-" [4] highlighting
-Plug 'scrooloose/syntastic' "Syntax Highlighting
-Plug 'nvie/vim-flake8'
+" golang language support
+" https://github.com/fatih/vim-go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" [5] Features
-Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
-Plug 'tpope/vim-repeat' "allow plugins to utilize . command
-Plug 'tpope/vim-surround' "easily surround things...just read docs for info
-Plug 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
-Plug 'duff/vim-scratch' "Open a throwaway scratch buffer
-Plug 'scrooloose/nerdcommenter' "Easy and nice commenting
+" https://github.com/nsf/gocode
+" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" [6] Diary, notes, whatever. It's amazing
-Plug 'vimwiki/vimwiki'
+" color scheme
+Plug 'lifepillar/vim-solarized8'
+Plug 'arcticicestudio/nord-vim'
 
-" [7] Opens a browser to preview markdown files
-" For this to work, you need to type npm install -g instant-markdown-d
-Plug 'suan/vim-instant-markdown'
+" rust plugin that supports file detection, syntax highlighting, formatting,
+" Syntastic integration, and more.
+Plug 'rust-lang/rust.vim'
 
-" [8] Deoplete + Autocompletion and language extensions: Python, Go, Scala
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+"clang-format plugin
+Plug 'rhysd/vim-clang-format'
 
-" Python
-Plug 'zchee/deoplete-jedi'
+Plug 'https://github.com/cstrahan/vim-capnp.git'
 
-" Go
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'nsf/gocode', {'rtp': 'nvim/'}
-Plug 'godoctor/godoctor.vim'
-Plug 'jnwhiteh/vim-golang'
-
-" Scala
-Plug 'derekwyatt/vim-scala'
-
-" [9] wakatime to record coding in vim
-" Plug 'wakatime/vim-wakatime'
+" Wakatime
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
-set ttyfast
-set lazyredraw
+" Statusline settings
+set laststatus=2
+set updatetime=100
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
 
-let $PATH='/usr/local/bin:' . $PATH
+" filetype specific settings
+autocmd vimrc BufNewFile,BufReadPost Vagrantfile setfiletype ruby
+autocmd vimrc BufNewFile,BufReadPost .clang-format setfiletype yaml
 
-:au FocusLost * :wa "Save on focus lost
+" git shortcuts
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0], 'options': '--delimiter : --nth 3..'}), <bang>0)
 
-" Sessions
-let g:session_autoload = 'no'
+nmap <leader>gc :tabedit expand('%')<cr>:Gcommit --verbose<cr>:only<cr>
+nmap <leader>gC :tabedit expand('%')<cr>:Gcommit --verbose --amend<cr>:only<cr>
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gp :Gpush<cr>
+nmap <leader>gg :GGrep<cr>
 
-" Toggle nerdtree with F2
-map <F2> :NERDTreeToggle<CR>
-" Current file in nerdtree
-map <F3> :NERDTreeFind<CR>
-" Toggle :CheckHealth
-map <F4> :CheckHealth<CR>
-" Toggle :PlugUpdate
-map <F5> :PlugUpdate<CR>
+" key bindings
+map <C-n> :NERDTreeToggle<cr>
+map <leader>w :w<cr>
+map <leader>c :Commits<cr>
+map <leader>h :History<cr>
+map <leader>f :Files<cr>
+map <leader>r :Rg<cr>
+map <leader>l :BLines<cr>
+map <leader>b :Buffers<cr>
 
 
-" Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
-set ttimeout
-set ttimeoutlen=20
-set notimeout
 
-" highlight vertical column of cursor
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nnoremap <C-c> <Esc>
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+snoremap <C-c> <Esc>
+xnoremap <C-c> <Esc>
+cnoremap <C-c> <Esc>
+onoremap <C-c> <Esc>
+lnoremap <C-c> <Esc>
+tnoremap <C-c> <Esc>
+
+" Jump to start and end of line using the home row keys
+map H ^
+map L $
+
+" Move by line
+nnoremap j gj
+nnoremap k gk
+
+filetype plugin on
+set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+set autoread
+set number
+set autoindent
+set autowrite
+set relativenumber
+set ruler
+set ignorecase
 set cursorline
-
-set backspace=2	  " Backspace deletes like most programs in insert mode
-set tabstop=4
-set shiftwidth=4
-set encoding=utf-8
-set nocompatible  " Use Vim settings, rather then Vi settings
-set nobackup
-set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=500
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set hlsearch      " highlight matches
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
+set cmdheight=2
+set updatetime=300
+set backspace=indent,eol,start
 set mouse=a
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
+" configure vim-go
+let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1
+" configure rust
+let g:rustfmt_autosave = 1
 
-filetype plugin indent on
+let NERDTreeShowHidden=1
 
-augroup vimrcEx
-  autocmd!
-
-  " For all text files set 'textwidth' to 79 characters.
-  autocmd FileType text setlocal textwidth=79
-
-  " Set syntax highlighting for specific file types
-    autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-  " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
-
-  " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-augroup END
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup
-  let g:grep_cmd_opts = '--line-numbers --noheading'
-endif
-
-" Airline
-"let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_symbols.space = "\ua0"
-let g:airline_theme='solarized'
-
-set t_Co=256
-
-:set smartcase
-:set ignorecase
-
-" Color scheme
-syntax enable
-let g:solarized_termcolors=16
-set background=dark
-colorscheme solarized
-
-" Highlight line number of where cursor currently is
-hi CursorLineNr guifg=#050505
-
-" Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['python']
-let python_highlight_all=1
-
-" deoplete settings
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
-
-""" Go settings
-" Highlighting
-let g:go_highlight_funtions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_structs = 1 
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-
-" Snippets
-let g:go_snippet_engine = "neosnippet"
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-
-" Numbers
-set number
-set numberwidth=5
-set relativenumber
-
-" Persistent undo
-set undodir=~/.vim/undo/
+" save undo and redo data across restarts
 set undofile
+set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
-" convert hash rockets
-nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
+" tab sizes
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
-set complete=.,w,t
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+" set up color scheme for go
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
-
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
-
-" Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Copy & Paste
-if has('clipboard') && !has('gui_running')
-	vnoremap <C-c> "+y
-	vnoremap <C-x> "+d
-	vnoremap <C-v> "+p
-	inoremap <C-v> <C-r><C-o>+
-endif
+" set up color scheme
+set termguicolors
+syntax on
+set background=dark
+colorscheme solarized8
